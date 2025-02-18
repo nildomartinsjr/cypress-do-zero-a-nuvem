@@ -34,7 +34,7 @@ describe('Central de Atendimento ao Cliente TAT', () => { //Define a suíte de t
   }),
 
 //Case test 02 (Extra)
-  it.only('Exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', () => {
+  it('Exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', () => {
     cy.get('#firstName').type('Nildo')
     cy.get('#lastName').type('Júnior')
     cy.get('#email').type('nildomartins.com')
