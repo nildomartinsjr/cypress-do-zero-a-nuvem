@@ -95,7 +95,7 @@ it('exibe mensagem de erro ao submeter o formulário sem preencher os campos obr
 })
 
 //Exercício extra 7 - Comando customizado que não recebe nenhum argumento
-it.only('envia o formuário com sucesso usando um comando customizado',()=> {
+it('envia o formuário com sucesso usando um comando customizado',()=> {
   cy.fillMandatoryFieldsAndSubmit()
 
   cy.get('.success').should('be.visible')
@@ -126,7 +126,45 @@ it('envia o formuário com sucesso usando um comando customizado',()=> {
 
   cy.get('.success').should('be.visible')
 })
+
+it('envia o formuário com sucesso usando um comando customizado', ()=>{ //Aqui usando o comando com os valores padrões.
+ 
+  cy.PreencheLogin()
+  
+  cy.get('.success').should('be.visible')
+})
+
+
+it('envia o formuário com sucesso usando um comando customizado', ()=>{ ///Aqui usando o comando mas passando valores diferentes.
+ 
+  cy.PreencheLogin({
+    firstName:'Manu', //Posso mudar só um campo ou todos, se eu mudar só um, os outros campos serão preenchidos com o padrão.
+    lastName:'Oliver',
+    email:'manu@gmail.com'
+  })
+  
+  cy.get('.success').should('be.visible')
+})
     
+it('Preencher formulário', ()=>{ //Aqui usando o comando mas passando valores diferentes.
+  cy.FillForm({
+    firstName: 'Dalida',
+    lastName: 'Gigliotti',
+    phone:'111222333'
+  })
+
+   cy.get('.success').should('be.visible')
+})
+
+it.only('Login com sucesso', ()=>{ //Aqui usando o comando com os valores padrões.
+  cy.LonginSucesso()
+
+  cy.get('.success').should('be.visible')
+})
+
+
+
+
 })
 
 

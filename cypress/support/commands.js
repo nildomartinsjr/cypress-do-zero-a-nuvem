@@ -30,6 +30,62 @@ Cypress.Commands.add('fillMandatoryFieldsAndSubmit2', (data = {
     cy.get('#open-text-area').type(data.text)
     cy.get('button[type="submit"]').click()
 })
+//Comando que recebe um objeto como argumento, com valores padrão (Exercício de repetição 1)
+
+Cypress.Commands.add('PreencheLogin', (data = {}) =>{
+    const {
+
+        firstName = 'Marie',
+        lastName = 'Claire',
+        email = 'mclaraire@gmail.com',
+        text = 'Thank you!'
+    } = data;
+
+    cy.get('#firstName').type(firstName)
+    cy.get('#lastName').type(lastName)
+    cy.get('#email').type(email)  
+    cy.get('#open-text-area').type(text)
+    cy.get('button[type="submit"]').click()
 
 
+})
 
+//Comando que recebe um objeto como argumento, com valores padrão (Exercício de repetição 1)
+Cypress.Commands.add('FillForm', (data = {})=>{
+   const {
+    firstName = 'João',
+    lastName = 'Gilberto',
+    email = 'joaog@gmail.com',
+    phone = '999888777',
+    text = 'Agradeço à atenção.'
+   } = data;
+
+   cy.get('#firstName').type(firstName)
+   cy.get('#lastName').type(lastName)
+   cy.get('#email').type(email)
+   cy.get('#phone').type(phone)
+   cy.get('#phone-checkbox').check()
+   cy.get('#open-text-area').type(text)
+   cy.get('.button').click()
+
+})
+
+//Comando que recebe um objeto como argumento, com valores padrão (Exercício de repetição 2)
+Cypress.Commands.add('LonginSucesso', (data = {})=>{
+    const {
+        firstName = 'Julio',
+        lastName = 'Lima',
+        email = 'juliolima@hotmail.com',
+        phone = '444555666',
+        text = 'abcdefghij'
+    } = data;
+
+    cy.get('#firstName').type(firstName)
+    cy.get('#lastName').type(lastName)
+    cy.get('#email').type(email)
+    cy.get('#phone').type(phone)
+    cy.get('#phone-checkbox').check()
+    cy.get('#open-text-area').type(text)
+    cy.get('.button').click()
+
+})
