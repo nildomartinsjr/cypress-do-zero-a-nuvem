@@ -5,7 +5,7 @@ Cypress.Commands.add('fillMandatoryFieldsAndSubmit', () => {
     cy.get('#lastName').type('Martins')
     cy.get('#email').type('nildomartins@gmail.com')  
     cy.get('#open-text-area').type('Agradeço a atenção.')
-    cy.get('button[type="submit"]').click()
+    cy.contains('button','Enviar').click()
 })
 
 //Comando customizado que recebe um objeto como argumento
@@ -14,7 +14,7 @@ Cypress.Commands.add('fillMandatoryFieldsAndSubmit1', data => {
     cy.get('#lastName').type(data.lastName)
     cy.get('#email').type(data.email)  
     cy.get('#open-text-area').type(data.text)
-    cy.get('button[type="submit"]').click()
+    cy.contains('button','Enviar').click()
 })
 
 //Comando que recebe um objeto como argumento, com valores padrão
@@ -28,7 +28,7 @@ Cypress.Commands.add('fillMandatoryFieldsAndSubmit2', (data = {
     cy.get('#lastName').type(data.lastName)
     cy.get('#email').type(data.email)  
     cy.get('#open-text-area').type(data.text)
-    cy.get('button[type="submit"]').click()
+    cy.contains('button','Enviar').click()
 })
 //Comando que recebe um objeto como argumento, com valores padrão (Exercício de repetição 1)
 
@@ -45,8 +45,7 @@ Cypress.Commands.add('PreencheLogin', (data = {}) =>{
     cy.get('#lastName').type(lastName)
     cy.get('#email').type(email)  
     cy.get('#open-text-area').type(text)
-    cy.get('button[type="submit"]').click()
-
+    cy.contains('button','Enviar').click()
 
 })
 
@@ -66,7 +65,7 @@ Cypress.Commands.add('FillForm', (data = {})=>{
    cy.get('#phone').type(phone)
    cy.get('#phone-checkbox').check()
    cy.get('#open-text-area').type(text)
-   cy.get('.button').click()
+   cy.contains('button','Enviar').click()
 
 })
 
@@ -86,6 +85,25 @@ Cypress.Commands.add('LonginSucesso', (data = {})=>{
     cy.get('#phone').type(phone)
     cy.get('#phone-checkbox').check()
     cy.get('#open-text-area').type(text)
-    cy.get('.button').click()
+    cy.contains('button','Enviar').click()
+
+})
+//Comando que recebe um objeto como argumento, com valores padrão (Exercício de repetição 3)
+Cypress.Commands.add('meucomando', (data = {})=>{
+    const {
+    firstName = 'Jose',
+    lastName = 'Maria',
+    email = 'josemaria@gmail.com',
+    phone = '999888444',
+    text = 'Thank you'
+     } = data 
+
+    cy.get('#firstName').type(firstName)
+    cy.get('#lastName').type(lastName)
+    cy.get('#email').type(email)
+    cy.get('#phone').type(phone)
+    cy.get('#phone-checkbox').check()
+    cy.get('#open-text-area').type(text)
+    cy.contains('button','Enviar').click()
 
 })
