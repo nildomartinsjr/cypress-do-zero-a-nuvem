@@ -93,14 +93,14 @@ it('exibe mensagem de erro ao submeter o formulário sem preencher os campos obr
   cy.get(".error").should('be.visible')
 })
 
-//Exercício extra 7 - Comando customizado que não recebe nenhum argumento
+//Exercício extra 7 - Comando customizado que não recebe nenhum argumento.
 it('envia o formuário com sucesso usando um comando customizado 1',()=> {
   cy.fillMandatoryFieldsAndSubmit()
 
   cy.get('.success').should('be.visible')
 })
 
-//Comando customizado que recebe um objeto como argumento
+//Comando customizado que recebe um objeto como argumento.
 it('envia o formuário com sucesso usando um comando customizado 2',()=> {
   const data = {
     firstName: 'Nildo',
