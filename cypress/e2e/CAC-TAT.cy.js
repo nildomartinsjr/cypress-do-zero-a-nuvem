@@ -114,7 +114,7 @@ it('envia o formuário com sucesso usando um comando customizado 2',()=> {
 })
 
 //Comando que recebe um objeto como argumento, com valores padrão
-it('envia o formuário com sucesso usando um comando customizado 3',()=> {
+it.only('envia o formuário com sucesso usando um comando customizado 3',()=> {
   const data = {
     firstName: 'Nildo',
     lastName: 'Martins',
@@ -241,7 +241,7 @@ it('seleciona um arquivo simulando um drag-and-drop', ()=>{
 
 //exercício extra 2
 
-it.only('seleciona um arquivo utilizando uma fixture para a qual foi dada um alias', ()=>{
+it('seleciona um arquivo utilizando uma fixture para a qual foi dada um alias', ()=>{
   cy.fixture('example.json').as('sampleFile')
   cy.get('#file-upload')
     .selectFile('@sampleFile')
@@ -250,6 +250,29 @@ it.only('seleciona um arquivo utilizando uma fixture para a qual foi dada um ali
   })
  })
 
+ //Lidando com links que abrem em outra aba
+
+ //exercício
+
+ it('verifica que a política de privacidade abre em outra aba sem a necessidade de um clique', ()=>{
+  cy.contains('a', 'Política de Privacidade')
+  .should('have.attr', 'href', 'privacy.html')
+  .and('have.attr','target', '_blank')
+ })
+
+ //exercício extra 1
+
+ it('acessa a página da política de privacidade removendo o target e então clicando no link', ()=>{
+  cy.contains('a', 'Política de Privacidade')
+    .invoke('removeAttr', 'target')
+    .click()
+
+    cy.contains('h1', 'CAC TAT - Política de Privacidade')
+      .should('be.visible')
+ })
+
+ 
+ 
 })
 
 
