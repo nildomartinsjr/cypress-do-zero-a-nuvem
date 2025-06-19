@@ -114,7 +114,7 @@ it('envia o formuário com sucesso usando um comando customizado 2',()=> {
 })
 
 //Comando que recebe um objeto como argumento, com valores padrão
-it.only('envia o formuário com sucesso usando um comando customizado 3',()=> {
+it('envia o formuário com sucesso usando um comando customizado 3',()=> {
   const data = {
     firstName: 'Nildo',
     lastName: 'Martins',
@@ -176,7 +176,7 @@ it('seleciona um produto (YouTube) por seu texto', ()=>{
 })
 
 //Exercício extra 1 - selencionando pelo valor
-it('seleciona um produto (Mentoria) por seu valor (value)',() => {
+it('seleciona um produto (mentoria) por seu valor (value)',() => {
   cy.get('#product').select('mentoria')
   .should('have.value', 'mentoria')
 })
