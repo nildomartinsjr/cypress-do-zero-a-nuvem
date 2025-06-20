@@ -106,7 +106,7 @@ it('envia o formuário com sucesso usando um comando customizado 2',()=> {
     firstName: 'Nildo',
     lastName: 'Martins',
     email:'nildomartins@gmail.com',
-    text:'Teste'
+    text:'Test'
   }
   cy.fillMandatoryFieldsAndSubmit1(data)
 
