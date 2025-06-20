@@ -12,6 +12,8 @@ describe('Central de Atendimento ao Cliente TAT', () => {
 
   //Exercício
   it('preenche os campos obrigatórios e envia o formulário', ()=> {
+    cy.clock()
+
     cy.get('#firstName').type('Nildo')
     cy.get('#lastName').type('Martins')
     cy.get('#email').type('nildomartins@gmail.com')  
@@ -19,10 +21,16 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.contains('button','Enviar').click()
 
     cy.get('.success').should('be.visible')
+
+    cy.tick(3000)
+
+    cy.get('.success').should('not.be.visible')
   })
 
 //Exercício extra 1
   it('preenche os campos obrigatórios e envia o formulário', ()=> { 
+    cy.clock()
+
     const longText = Cypress._.repeat('abcdefghijklmnopqrstuvwyz', 10)
     cy.get('#firstName').type('Nildo')
     cy.get('#lastName').type('Martins')
@@ -31,9 +39,17 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.contains('button','Enviar').click()
 
     cy.get('.success').should('be.visible')
+
+    cy.tick(3000)
+
+    cy.get('.success').should('not.be.visible')
+
   })
+
 //Exercício extra 2
   it('exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', ()=> {
+    cy.clock()
+
     cy.get('#firstName').type('nildo')
     cy.get('#lastName').type('Martins')
     cy.get('#email').type('nildomartins%com')
@@ -41,6 +57,10 @@ describe('Central de Atendimento ao Cliente TAT', () => {
     cy.contains('button','Enviar').click()
 
     cy.get(".error").should('be.visible')
+
+    cy.tick(3000)
+
+    cy.get(".error").should('not.be.visible')
 
   }) 
 //Exercício extra 3
@@ -52,6 +72,8 @@ it('se um valor não-numérico for digitado no campo telefone, seu valor continu
 
 //Exercício extra 4
 it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário', ()=>{
+    cy.clock()
+
     cy.get('#firstName').type('Nildo')
     cy.get('#lastName').type('Martins')
     cy.get('#email').type('nildomartins@gmail.com')
@@ -60,6 +82,10 @@ it('exibe mensagem de erro quando o telefone se torna obrigatório mas não é p
     cy.contains('button','Enviar').click()
 
     cy.get(".error").should('be.visible')
+
+     cy.tick(3000)
+
+    cy.get(".error").should('not.be.visible')
 })
 
 //Exercício extra 5
@@ -89,19 +115,33 @@ it('preenche e limpa os campos nome, sobrenome, email e telefone', ()=>{
 
 //Exercício extra 6
 it('exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', ()=>{
+  cy.clock()
+  
   cy.contains('button','Enviar').click()
   cy.get(".error").should('be.visible')
+
+  cy.tick(3000)
+
+  cy.get(".error").should('not.be.visible')
 })
 
 //Exercício extra 7 - Comando customizado que não recebe nenhum argumento.
 it('envia o formuário com sucesso usando um comando customizado 1',()=> {
+  cy.clock()
+  
   cy.fillMandatoryFieldsAndSubmit()
 
   cy.get('.success').should('be.visible')
+
+  cy.tick(3000)
+
+  cy.get('.success').should('not.be.visible')
 })
 
 //Comando customizado que recebe um objeto como argumento.
 it('envia o formuário com sucesso usando um comando customizado 2',()=> {
+  cy.clock()
+  
   const data = {
     firstName: 'Nildo',
     lastName: 'Martins',
@@ -111,10 +151,18 @@ it('envia o formuário com sucesso usando um comando customizado 2',()=> {
   cy.fillMandatoryFieldsAndSubmit1(data)
 
   cy.get('.success').should('be.visible')
+
+  cy.tick(3000)
+
+  cy.get('.success').should('not.be.visible')
+
+
 })
 
 //Comando que recebe um objeto como argumento, com valores padrão
 it('envia o formuário com sucesso usando um comando customizado 3',()=> {
+  cy.clock()
+
   const data = {
     firstName: 'Nildo',
     lastName: 'Martins',
@@ -124,17 +172,27 @@ it('envia o formuário com sucesso usando um comando customizado 3',()=> {
   cy.fillMandatoryFieldsAndSubmit2(data)
 
   cy.get('.success').should('be.visible')
+
+  cy.tick(3000)
+
+  cy.get('.success').should('not.be.visible')
 })
 
 it('envia o formuário com sucesso usando um comando customizado 4', ()=>{ //Aqui usando o comando com os valores padrões.
+  cy.clock()
  
   cy.PreencheLogin()
   
   cy.get('.success').should('be.visible')
+
+  cy.tick(3000)
+
+  cy.get('.success').should('not.be.visible')
 })
 
 
 it('envia o formuário com sucesso usando um comando customizado 5', ()=>{ ///Aqui usando o comando mas passando valores diferentes.
+  cy.clock()
  
   cy.PreencheLogin({
     firstName:'Manu', //Posso mudar só um campo ou todos, se eu mudar só um, os outros campos serão preenchidos com o padrão.
@@ -143,9 +201,15 @@ it('envia o formuário com sucesso usando um comando customizado 5', ()=>{ ///Aq
   })
   
   cy.get('.success').should('be.visible')
+
+  cy.tick(3000)
+
+  cy.get('.success').should('not.be.visible')
 })
     
 it('envia o formuário com sucesso usando um comando customizado 6', ()=>{ //Aqui usando o comando mas passando valores diferentes.
+  cy.clock()
+
   cy.FillForm({
     firstName: 'Dalida',
     lastName: 'Gigliotti',
@@ -153,18 +217,34 @@ it('envia o formuário com sucesso usando um comando customizado 6', ()=>{ //Aqu
   })
 
    cy.get('.success').should('be.visible')
+
+   cy.tick(3000)
+
+  cy.get('.success').should('not.be.visible')
 })
 
 it('envia o formuário com sucesso usando um comando customizado 7', ()=>{ //Aqui usando o comando com os valores padrões.
+  cy.clock()
+
   cy.LonginSucesso()
 
   cy.get('.success').should('be.visible')
+
+  cy.tick(3000)
+
+  cy.get('.success').should('not.be.visible')
 })
 
 it('envia o formuário com sucesso usando um comando customizado 8', () =>{
+  cy.clock()
+
   cy.meucomando()
 
   cy.get('.success').should('be.visible')
+
+  cy.tick(3000)
+
+  cy.get('.success').should('not.be.visible')
 })
 
 //Selecionando opções em campos de seleção suspensa
@@ -271,8 +351,81 @@ it('seleciona um arquivo utilizando uma fixture para a qual foi dada um alias', 
       .should('be.visible')
  })
 
- 
- 
+ //lodash (Cypress._)
+  Cypress._.times (2, () =>
+   {it('exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', ()=>{ //utilizando a funcionalidade Cypress._.times()
+
+    cy.clock()
+  
+    cy.contains('button','Enviar').click()
+    cy.get(".error").should('be.visible')
+
+    cy.tick(3000)
+
+    cy.get(".error").should('not.be.visible')
+    })
+  })
+
+  it('exibe e oculta as mensagens de sucesso e erro usando .invoke()', () => {
+  cy.get('.success')
+    .should('not.be.visible')
+    .invoke('show')
+    .should('be.visible')
+    .and('contain', 'Mensagem enviada com sucesso.')
+    .invoke('hide')
+    .should('not.be.visible')
+  cy.get('.error')
+    .should('not.be.visible')
+    .invoke('show')
+    .should('be.visible')
+    .and('contain', 'Valide os campos obrigatórios!')
+    .invoke('hide')
+    .should('not.be.visible')
 })
+
+it('preenche o campo da área de texto usando o comando invoke', ()=>{
+  cy.get('#open-text-area').invoke('val', 'obrigado')
+    .should('have.value', 'obrigado')
+})
+
+it('preenche o campo telefone usando o comando invoke', ()=>{
+  cy.get('#phone').invoke('val', '999888777')
+  .should('have.value', '999888777')
+})
+
+it('verifica tamanho da fonte do botão enviar usando o comando invoke', ()=>{
+  cy.get('.button').invoke('css','font-size')
+  .should('equal', '19.2px')
+})
+
+it('faz uma requisição HTTP',() => {
+  cy.request('https://cac-tat-v3.s3.eu-central-1.amazonaws.com/index.html')
+    .as('getRequest')
+    .its('status')
+    .should('be.equal', 200)
+  cy.get('@getRequest')
+    .its('statusText')
+    .should('be.equal', 'OK')
+  cy.get('@getRequest')
+    .its('body')
+    .should('include', 'CAC TAT')
+
+  })
+
+  it('desafio: encontre o gato na aplicação',()=>{
+    cy.get('#cat')
+      .invoke('show')
+      .should('be.visible')
+    cy.get('#title')
+      .invoke('text', 'CAT TAT')
+      .should('contain', 'CAT TAT')
+    cy.get('#subtitle')
+      .invoke('text', 'Eu amo gatos!')
+  })
+
+})
+
+ 
+
 
 
