@@ -397,8 +397,7 @@ it('verifica tamanho da fonte do botão enviar usando o comando invoke', ()=>{
   cy.get('.button').invoke('css','font-size')
   .should('equal', '19.2px')
 })
-
-it('faz uma requisição HTTP',() => {
+it('faz uma requisição HTTP', ()=>{
   cy.request('https://cac-tat-v3.s3.eu-central-1.amazonaws.com/index.html')
     .as('getRequest')
     .its('status')
@@ -409,8 +408,7 @@ it('faz uma requisição HTTP',() => {
   cy.get('@getRequest')
     .its('body')
     .should('include', 'CAC TAT')
-
-  })
+})
 
   it('desafio: encontre o gato na aplicação',()=>{
     cy.get('#cat')
